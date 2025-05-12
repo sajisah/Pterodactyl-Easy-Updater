@@ -3,10 +3,19 @@
 # Pterodactyl Panel Updater Script
 set -e
 
-echo "⚠️  WARNING: This will update your Pterodactyl Panel to the latest version."
-read -p "Do you want to continue? (yes/no): " confirm
+echo "=============================================="
+echo "   🛠️  Pterodactyl Easy Updater"
+echo "   📦 Developed by Vortexia R&D Department"
+echo "=============================================="
+echo ""
 
-if [[ "$confirm" != "yes" ]]; then
+echo "⚠️  WARNING: This will update your Pterodactyl Panel to the latest version."
+read -p "Do you want to continue? (y/n): " confirm
+
+# Convert input to lowercase
+confirm=$(echo "$confirm" | tr '[:upper:]' '[:lower:]')
+
+if [[ "$confirm" != "y" && "$confirm" != "yes" ]]; then
     echo "❌ Update cancelled by user."
     exit 0
 fi
@@ -43,4 +52,7 @@ php artisan queue:restart
 echo "[*] Bringing the panel back online..."
 php artisan up
 
-echo "[✓] Pterodactyl Panel successfully updated!"
+echo ""
+echo "✅ Pterodactyl Panel successfully updated!"
+echo "🔒 Script executed by Vortexia R&D Department"
+echo ""
