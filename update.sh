@@ -3,6 +3,14 @@
 # Pterodactyl Panel Updater Script
 set -e
 
+echo "⚠️  WARNING: This will update your Pterodactyl Panel to the latest version."
+read -p "Do you want to continue? (yes/no): " confirm
+
+if [[ "$confirm" != "yes" ]]; then
+    echo "❌ Update cancelled by user."
+    exit 0
+fi
+
 echo "[*] Starting Pterodactyl Panel update..."
 
 cd /var/www/pterodactyl || { echo "[!] Directory not found."; exit 1; }
